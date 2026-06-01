@@ -1,0 +1,102 @@
+/* Mobile fixes for provided markup (header + hero + anchors)
+   Версия: 2026-05-18 (v4)
+   Что нового: добавлен iOS/Yandex iOS «микрогэп» сверху для sticky-хедера,
+   чтобы плавающая адресная плашка не перекрывала шапку. Обновлены offset-ы якорей.
+   Подключать ПОСЛЕ styles.css
+*/
+
+:root {
+  --header-h: 72px;          /* Базовая высота шапки */
+  --ios-gap: 0px;            /* Микро-зазор сверху (по умолчанию 0, на iOS станет 8px) */
+  --scroll-offset: calc(var(--header-h) + var(--ios-gap) + 6px); /* отступ для якорей */
+}
+
+/* Детектор iOS/WebKit: задаём зазор 8px только на iOS-браузерах */
+@supports (-webkit-touch-callout: none) {
+  :root { --ios-gap: 8px; }
+}
+
+/* ===== ГЛОБАЛЬНОЕ ИСПРАВЛЕНИЕ ЯКОРЕЙ ===== */
+/* Чтобы заголовки/секции не прятались под липкую шапку при переходе по #якорям */
+html { scroll-padding-top: var(--scroll-offset); }
+[id] { scroll-margin-top: var(--scroll-offset); }
+
+/* ===== HEADER / Шапка ===== */
+.site-header {
+  position: sticky;          /* липкая шапка */
+  top: var(--ios-gap);        /* небольшой отступ сверху на iOS, 0 на других */
+  z-index: 1000;
+  background: color-mix(in srgb, #ffffff 88%, transparent);
+  -webkit-backdrop-filter: saturate(140%) blur(8px);
+  backdrop-filter: saturate(140%) blur(8px);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.header-inner {
+  display: grid;
+  grid-template-columns: 1fr auto auto; /* бренд шире, управление справа */
+  align-items: center;
+  gap: 8px;
+  padding: calc(env(safe-area-inset-top) + 8px) 12px 10px 12px;
+  min-height: var(--header-h);
+  box-sizing: border-box;
+}
+
+.logo { display: inline-flex; align-items: center; gap: 10px; min-width: 0; }
+.logo-mark { width: 22px; height: 22px; display: inline-grid; place-items: center; }
+.logo-text {
+  font-weight: 700; font-size: 18px; color: #0a3f2b;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+.nav-toggle {
+  width: 44px; height: 44px; display: inline-grid; place-items: center;
+  background: none; border: 0; padding: 0; margin: 0 2px; cursor: pointer;
+}
+
+/* Меню: мобильно — выпадающее под шапкой; десктоп — в линию */
+.site-nav { display: none; }
+.site-header.nav-open .site-nav,
+.site-header:has(.nav-toggle[aria-expanded="true"]) .site-nav {
+  display: block;
+  position: fixed;
+  top: calc(var(--header-h) + var(--ios-gap));
+  left: 10px; right: 10px;
+  z-index: 1100;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  padding: 10px;
+}
+.site-header.nav-open .site-nav .nav-link,
+.site-header:has(.nav-toggle[aria-expanded="true"]) .site-nav .nav-link {
+  display: block; padding: 12px 10px; border-radius: 10px; margin: 2px 0;
+}
+.site-header.nav-open .site-nav .nav-link.cta,
+.site-header:has(.nav-toggle[aria-expanded="true"]) .site-nav .nav-link.cta { font-weight: 700; }
+
+@media (min-width: 768px) {
+  .header-inner { grid-template-columns: 1fr auto; }
+  .nav-toggle { display: none; }
+  .site-nav { display: flex; align-items: center; gap: 16px; position: static; padding: 0; box-shadow: none; border: 0; }
+  .site-nav .nav-link { padding: 10px 6px; }
+}
+
+/* ===== HERO / Первый экран ===== */
+main .container { padding-left: 12px; padding-right: 12px; }
+.hero .container, .hero .content, .hero-content, .intro, .lead { max-width: none; }
+
+h1 { font-size: clamp(26px, 7.2vw, 38px); line-height: 1.22; text-wrap: balance; }
+p.lead, .intro p { font-size: clamp(16px, 3.9vw, 18px); line-height: 1.6; }
+
+.hero .buttons, .buttons, .cta-row { display: grid; gap: 12px; }
+.hero .buttons > *, .buttons > *, .cta-row > * { width: 100%; min-height: 48px; }
+
+/* Безопасные отступы снизу для нижней панели iOS */
+@supports (padding: max(0px)) {
+  footer, main > section:last-child { padding-bottom: max(24px, env(safe-area-inset-bottom)); }
+}
+
+/* На очень узких экранах немного уменьшаем h1 */
+@media (max-width: 360px) { h1 { font-size: clamp(24px, 8vw, 32px); } }

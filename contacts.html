@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Контакты — ООО «Агринно»</title>
+  <meta name="description" content="Связаться с ООО «Агринно»: форма обратной связи, адрес, карта и реквизиты." />
+  <link rel="preload" href="styles.css" as="style" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="assets/img/favicon.png" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html"><span class="logo-mark">🟢</span><span class="logo-text">Агринно</span></a>
+      <button class="nav-toggle" aria-label="Открыть меню" aria-expanded="false">☰</button>
+      <nav class="site-nav" aria-label="Главное меню">
+        <a class="nav-link" href="index.html">О компании</a>
+        <a class="nav-link" href="products.html">Продукция</a>
+        <a class="nav-link active cta" href="contacts.html">Контакты</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <h1>Контакты</h1>
+        <p class="lead">Напишите нам — обычно отвечаем в течение 1 рабочего дня.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container grid two">
+        <div class="card">
+          <h2>Форма связи</h2>
+          <form id="contact-form" class="form" novalidate>
+            <div class="field">
+              <label for="name">Имя</label>
+              <input id="name" name="name" type="text" placeholder="Ваше имя" required />
+              <small class="error" aria-live="polite"></small>
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="name@example.com" required />
+              <small class="error" aria-live="polite"></small>
+            </div>
+            <div class="field">
+              <label for="message">Сообщение</label>
+              <textarea id="message" name="message" rows="5" placeholder="Кратко опишите ваш запрос" required></textarea>
+              <small class="error" aria-live="polite"></small>
+            </div>
+            <div class="field inline">
+              <label><input type="checkbox" id="agree" required /> Согласен(на) с политикой конфиденциальности</label>
+            </div>
+            <button class="btn primary" type="submit">Отправить</button>
+            <p id="form-status" class="status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+        <div class="card">
+          <h2>Реквизиты и контакты</h2>
+          <ul class="contacts-list">
+            <li><strong>ООО «Агринно»</strong></li>
+            <li>ИНН / КПП: 2453020520 / 541001001</li>
+            <li>ОГРН: 1162468117778</li>
+            <li>Email: info@agrinno.ru</li>
+            <li>Телефон: +7 (905) 952‑62‑34</li>
+            <li>Адрес: Россия, г. _______, ул. _______, д. __</li>
+          </ul>
+          <div class="map-placeholder" role="img" aria-label="Карта расположения"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt">
+      <div class="container">
+        <h2>Частые вопросы</h2>
+        <details class="faq"><summary>Как оформить оптовый заказ?</summary><div>Оставьте заявку через форму или напишите на email — вышлем КП и образцы спецификаций.</div></details>
+        <details class="faq"><summary>Есть ли сертификация?</summary><div>Соблюдаем действующие ветеринарно‑санитарные нормы. Предоставим документы по запросу.</div></details>
+        <details class="faq"><summary>Доставляете по РФ и СНГ?</summary><div>Да, работаем с проверенными логистическими партнёрами. Условия — в КП.</div></details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="logo footer-logo"><span class="logo-mark">🟢</span><span class="logo-text">Агринно</span></div>
+        <p class="muted">Свяжитесь с нами — обсудим детали сотрудничества.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Навигация в подвале">
+        <a href="index.html">О компании</a>
+        <a href="products.html">Продукция</a>
+        <a href="contacts.html">Контакты</a>
+      </nav>
+      <div class="footer-copy">
+        <small>© <span id="year"></span> ООО «Агринно»</small>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
