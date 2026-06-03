@@ -99,7 +99,7 @@ img { max-width: 100%; display: block; }
   .hero-inner { grid-template-columns: 1fr; }
   .grid.two { grid-template-columns: 1fr; }
   .grid.three { grid-template-columns: 1fr; }
-  .site-nav { position: fixed; inset: 56px 0 auto 0; background: #ffffff; border-bottom: 1px solid #e6efe9; padding: 12px; transform: translateY(-120%); transition: transform .2s ease; flex-direction: column; gap: 6px; }
+  .site-nav { position: fixed; inset: 40px 0 auto 0; background: #ffffff; border-bottom: 1px solid #e6efe9; padding: 12px; transform: translateY(-120%); transition: transform .2s ease; flex-direction: column; gap: 6px; }
   .site-nav.open { transform: translateY(0); }
   .nav-toggle { display: inline-flex; }
 }
