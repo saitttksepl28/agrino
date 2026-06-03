@@ -141,7 +141,7 @@ img { max-width: 100%; display: block; }
   background: linear-gradient(180deg, #eaf7ef 0%, #edf9f3 100%);
   box-shadow: 0 10px 30px rgba(0,0,0,0.06);
 }
-.hero-media img {
+.hero-media imgg {
   width: 100%;
   height: 100%;
   display: block;
